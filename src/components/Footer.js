@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Footer } from 'react-materialize';
 
 const SiteFooter = () => (
-    <Footer copyrights={" © " + new Date().getFullYear()}
+    <Footer copyrights={" © " + new Date().getFullYear() + " all rights reserved"}
         moreLinks={
             <a className="grey-text text-lighten-4 right" rel="noopener noreferrer" href="https://alegre.herokuapp.com/" target="_blank">Alexander Alegre</a>
         }
