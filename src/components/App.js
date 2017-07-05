@@ -3,10 +3,11 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // Components
 import Header from './Header';
-import Footer from './Footer';
+import SiteFooter from './Footer';
 import Home from './Home';
 import Bmr from './Bmr';
 import Nutrition from './Nutrition';
+
 
 const App = () => (
     <BrowserRouter>
@@ -17,7 +18,7 @@ const App = () => (
                 <Route path="/bmr" component={ Bmr } />
                 <Route path="/nutrition" component={ Nutrition } />
             </Switch>
-            <Footer/>
+            <SiteFooter/>
         </div>
     </BrowserRouter>
 );

@@ -1,4 +1,7 @@
+// Dependencies
 import React from 'react';
+// Materialize
+
 
 const Home = () => (
     <div>
