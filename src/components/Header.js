@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { Navbar } from 'react-materialize';
 
 // display logo
-const name= <img className="main-logo" src={require("./muscle.png")} alt="bicep flexing"/>
+const name= <img className="main-logo" src={require("./../img/muscle.png")} alt="bicep flexing"/>
 
 const Header = () => (
   <Navbar brand={name} right>
