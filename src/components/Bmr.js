@@ -56,10 +56,10 @@ class Bmr extends React.Component {
 
         if (this.state.gender === 'male') {
             bmr = Math.round(66 + (6.23 * Math.abs(this.state.weight)) + (12.7 * Math.abs(userHeight)) - (6.8 * Math.abs(this.state.age)));
-            maintenanceCalories = Math.abs(bmr * this.state.activity);
+            maintenanceCalories = Math.round(Math.abs(bmr * this.state.activity));
         } else if (this.state.gender === 'female') {
             bmr = Math.round(655 + (4.35 * Math.abs(this.state.weight)) + (4.7 * Math.abs(userHeight)) - (4.7 * Math.abs(this.state.age)));
-            maintenanceCalories = Math.abs(bmr * this.state.activity);
+            maintenanceCalories = Math.round(Math.abs(bmr * this.state.activity));
         }
 
         this.setState({
