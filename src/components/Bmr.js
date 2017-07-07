@@ -17,6 +17,7 @@ class Bmr extends React.Component {
             showBmr: false,
             brm: '',
             maintenanceCalories: '',
+            errorMessage: false,
 
         };
         this.onSubmit = this.onSubmit.bind(this);
@@ -54,19 +55,37 @@ class Bmr extends React.Component {
         let bmr;
         let maintenanceCalories;
 
-        if (this.state.gender === 'male') {
-            bmr = Math.round(66 + (6.23 * Math.abs(this.state.weight)) + (12.7 * Math.abs(userHeight)) - (6.8 * Math.abs(this.state.age)));
-            maintenanceCalories = Math.round(Math.abs(bmr * this.state.activity));
-        } else if (this.state.gender === 'female') {
-            bmr = Math.round(655 + (4.35 * Math.abs(this.state.weight)) + (4.7 * Math.abs(userHeight)) - (4.7 * Math.abs(this.state.age)));
-            maintenanceCalories = Math.round(Math.abs(bmr * this.state.activity));
+        if(
+            this.state.activity &&
+            this.state.age &&
+            this.state.gender &&
+            this.state.heightFt &&
+            this.state.heightIn &&
+            this.state.weight
+        ) {
+            if (this.state.gender === 'male') {
+                bmr = Math.round(66 + (6.23 * Math.abs(this.state.weight)) + (12.7 * Math.abs(userHeight)) - (6.8 * Math.abs(this.state.age)));
+                maintenanceCalories = Math.round(Math.abs(bmr * this.state.activity));
+            } else if (this.state.gender === 'female') {
+                bmr = Math.round(655 + (4.35 * Math.abs(this.state.weight)) + (4.7 * Math.abs(userHeight)) - (4.7 * Math.abs(this.state.age)));
+                maintenanceCalories = Math.round(Math.abs(bmr * this.state.activity));
+            }
+
+            this.setState({
+                showBmr: true,
+                bmr,
+                maintenanceCalories,
+                errorMessage: false,
+            });
+            // scroll to bottom of page (better experience for mobile)
+            window.scrollTo(0, document.body.scrollHeight);
+        } else {
+            this.setState({
+                errorMessage: true,
+            });
+            window.scrollTo(0, document.body.scrollHeight);
         }
 
-        this.setState({
-            showBmr: true,
-            bmr,
-            maintenanceCalories,
-        });
     }
     // render the form
     render() {
@@ -79,11 +98,11 @@ class Bmr extends React.Component {
                     <Input onChange={ this.handleHeightInChange } value={ this.state.heightIn } label="Height Inches" type="number" s={4} />
                     <Input onChange={ this.handleWeightChange } value={ this.state.weight } label="Weight (lbs)" type="number" s={4} />
                     <Input onChange={ this.handleAgeChange } value={ this.state.age } label="Age" type="number" s={4} />
-                    <Input onChange={ this.handleGenderChange } value={ this.state.gender } s={4} type='select' label="Materialize Select" defaultValue='male'>
+                    <Input onChange={ this.handleGenderChange } value={ this.state.gender } s={4} type='select' label="Gender">
                             <option value='male'>Male</option>
                             <option value='female'>Female</option>
                     </Input>
-                    <Input onChange={ this.handleActivityChange } value={ this.state.activity } s={4} type='select' label="Materialize Select" defaultValue='sedetary'>
+                    <Input onChange={ this.handleActivityChange } value={ this.state.activity } s={4} type='select' label="Activity Level">
                             <option value='1.2'>Sedetary</option>
                             <option value='1.375'>Lightly Active</option>
                             <option value='1.55'>Active</option>
@@ -91,6 +110,8 @@ class Bmr extends React.Component {
                             <option value='1.9'>Extra Active</option>
                     </Input>
                     <Button onClick={ this.onSubmit } waves="light">Find Out!<Icon left>insert_emoticon</Icon></Button>
+                </Row>
+                <Row>
                     <Collection header="Activity Legend">
                         <CollectionItem>Sedetary: Little to no exercise.</CollectionItem>
                         <CollectionItem>Lightly Active: light exercise/sports 1-3 days/week</CollectionItem>
@@ -113,18 +134,21 @@ class Bmr extends React.Component {
                 : 
                     null
                 }
+                {/*show errors*/}
+                {
+                    this.state.errorMessage
+                    ?
+                        <Row>
+                            <CardPanel className="red center-align">
+                                <span className="white-text">Please make sure all of the fields are filled out. (reselect the gender and activity level)</span>
+                            </CardPanel>
+                        </Row>
+                    :
+                        null
+                }
             </div>
         );
     }
 }
 
 export default Bmr;
-
-// CALCULATIONS FOR DAILY CALORIE NEEDS
-
-
-// If you are sedentary (little or no exercise) : Calorie-Calculation = BMR x 1.2
-// If you are lightly active (light exercise/sports 1-3 days/week) : Calorie-Calculation = BMR x 1.375
-// If you are moderatetely active (moderate exercise/sports 3-5 days/week) : Calorie-Calculation = BMR x 1.55
-// If you are very active (hard exercise/sports 6-7 days a week) : Calorie-Calculation = BMR x 1.725
-// If you are extra active (very hard exercise/sports & physical job or 2x training) : Calorie-Calculation = BMR x 1.9

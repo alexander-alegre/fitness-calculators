@@ -18,7 +18,7 @@ const App = () => (
                 <Route path="/bmr" component={ Bmr } />
                 <Route path="/nutrition" component={ Nutrition } />
             </Switch>
-            <SiteFooter/>
+            <SiteFooter />
         </div>
     </BrowserRouter>
 );

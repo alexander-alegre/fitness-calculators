@@ -4,6 +4,7 @@ import React from 'react';
 const Nutrition = () => (
     <div>
         <h4>Calculate Your Nutritions Needs</h4>
+        <code>This is coming soon</code>
     </div>
 );
 
