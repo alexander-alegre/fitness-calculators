@@ -1,20 +1,24 @@
 {
   "name": "fitness-calculators",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "server.js",
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-materialize": "^1.0.3",
-    "react-router-dom": "^4.1.1"
+    "express": "^4.15.3"
   },
-  "devDependencies": {
-    "react-scripts": "1.0.10"
-  },
+  "devDependencies": {},
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only-dev && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexander-alegre/fitness-calculators.git"
+  },
+  "author": "Alexander Alegre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexander-alegre/fitness-calculators/issues"
+  },
+  "homepage": "https://github.com/alexander-alegre/fitness-calculators#readme"
 }
