@@ -18,7 +18,6 @@ class Bmr extends React.Component {
             brm: '',
             maintenanceCalories: '',
             errorMessage: false,
-
         };
         this.onSubmit = this.onSubmit.bind(this);
         this.handleActivityChange = this.handleActivityChange.bind(this);
@@ -121,8 +120,8 @@ class Bmr extends React.Component {
                     </Collection>
                 </Row>
                 {/* display data after button is pressed */}
-                { this.state.showBmr 
-                ? 
+                { this.state.showBmr
+                ?
                     <Row>
                     <CardPanel className="teal center-align">
                         <span className="white-text">Your BMR is {this.state.bmr}!</span>
@@ -131,7 +130,7 @@ class Bmr extends React.Component {
                         <span className="white-text">Based on your activity level you need to eat {this.state.maintenanceCalories} calories in order to maintain your current weight. (assuming you did not lie to me.)</span>
                     </CardPanel>
                     </Row>
-                : 
+                :
                     null
                 }
                 {/*show errors*/}
